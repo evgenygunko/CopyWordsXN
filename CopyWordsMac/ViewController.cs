@@ -20,7 +20,7 @@ namespace CopyWordsMac
 			// Do any additional setup after loading the view.
 
 			// Set the initial value for the label
-            labelHelloWorld.StringValue = "Button has not been clicked yet.";
+            //labelHelloWorld.StringValue = "Button has not been clicked yet.";
         }
 
         public override NSObject RepresentedObject
@@ -36,11 +36,11 @@ namespace CopyWordsMac
             }
         }
 
-		partial void buttonClickMeClicked(AppKit.NSButton sender)
+		partial void ButtonSearchClicked(AppKit.NSButton sender)
 		{
 
 			// Update counter and label
-            labelHelloWorld.StringValue = string.Format("The button has been clicked {0} time{1}.", ++numberOfTimesClicked, (numberOfTimesClicked < 2) ? "" : "s");
+            //labelHelloWorld.StringValue = string.Format("The button has been clicked {0} time{1}.", ++numberOfTimesClicked, (numberOfTimesClicked < 2) ? "" : "s");
 		}
     }
 }

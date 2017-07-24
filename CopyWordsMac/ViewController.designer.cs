@@ -12,18 +12,11 @@ namespace CopyWordsMac
     [Register ("ViewController")]
     partial class ViewController
     {
-        [Outlet]
-        AppKit.NSTextField labelHelloWorld { get; set; }
-
-        [Action ("buttonClickMeClicked:")]
-        partial void buttonClickMeClicked (AppKit.NSButton sender);
+        [Action ("ButtonSearchClicked:")]
+        partial void ButtonSearchClicked (AppKit.NSButton sender);
         
         void ReleaseDesignerOutlets ()
         {
-            if (labelHelloWorld != null) {
-                labelHelloWorld.Dispose ();
-                labelHelloWorld = null;
-            }
         }
     }
 }
