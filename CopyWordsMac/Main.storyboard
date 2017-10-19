@@ -738,7 +738,7 @@ Cg
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cZA-Ig-Wgf">
                                         <rect key="frame" x="0.0" y="437" width="565" height="24"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JkP-S8-KNT">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JkP-S8-KNT" userLabel="LabelWord">
                                                 <rect key="frame" x="-2" y="0.0" width="491" height="24"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="haj" id="8dF-53-g5T">
                                                     <font key="font" metaFont="system" size="20"/>
@@ -788,7 +788,7 @@ Cg
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9d-do-O1M">
                                         <rect key="frame" x="0.0" y="289" width="565" height="102"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="1Va-hT-ps3">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="1Va-hT-ps3" userLabel="LabelDefinitions">
                                                 <rect key="frame" x="-2" y="0.0" width="491" height="102"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="bI7-cu-Clh"/>
@@ -844,7 +844,7 @@ Cg
                                     <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdt-2Q-uS6">
                                         <rect key="frame" x="0.0" y="222" width="565" height="21"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="002-UJ-sU6">
+                                            <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="002-UJ-sU6" userLabel="LabelTranslation">
                                                 <rect key="frame" x="-2" y="2" width="491" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="tmY-vq-oIN"/>
@@ -908,7 +908,7 @@ Cg
                                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="otB-c1-0RD">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="otB-c1-0RD" userLabel="LabelPronunciation">
                                                 <rect key="frame" x="76" y="2" width="413" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="[ˈhɑjˀ]" id="cNN-Hd-G9O">
                                                     <font key="font" metaFont="system"/>
@@ -991,7 +991,7 @@ Cg
                                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-3s-EcB">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-3s-EcB" userLabel="LabelEndings">
                                                 <rect key="frame" x="76" y="4" width="413" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="-en, -er, erne" id="W7o-48-odm">
                                                     <font key="font" metaFont="system"/>
@@ -1043,7 +1043,7 @@ Cg
                                     <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hO0-tB-Ck6">
                                         <rect key="frame" x="0.0" y="0.0" width="565" height="51"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="Kue-EG-dEM">
+                                            <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="450" translatesAutoresizingMaskIntoConstraints="NO" id="Kue-EG-dEM" userLabel="LabelExamples">
                                                 <rect key="frame" x="-2" y="0.0" width="491" height="51"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="k49-4Z-Eyp"/>
@@ -1149,6 +1149,12 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="LabelDefinitions" destination="1Va-hT-ps3" id="R9t-fW-cYv"/>
+                        <outlet property="LabelEndings" destination="a1V-3s-EcB" id="LER-ah-eNB"/>
+                        <outlet property="LabelExamples" destination="Kue-EG-dEM" id="9bc-5l-dm5"/>
+                        <outlet property="LabelPronunciation" destination="otB-c1-0RD" id="pYt-eI-E5S"/>
+                        <outlet property="LabelTranslation" destination="002-UJ-sU6" id="Ev4-bb-YS1"/>
+                        <outlet property="LabelWord" destination="JkP-S8-KNT" id="SAc-ea-hEh"/>
                         <outlet property="txtLookUp" destination="ArG-Ce-4mH" id="3Sj-ld-TG9"/>
                     </connections>
                 </viewController>
