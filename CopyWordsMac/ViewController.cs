@@ -7,8 +7,6 @@ namespace CopyWordsMac
 {
     public partial class ViewController : NSViewController
     {
-        private int numberOfTimesClicked = 0;
-
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -36,11 +34,46 @@ namespace CopyWordsMac
             }
         }
 
-		partial void ButtonSearchClicked(AppKit.NSButton sender)
-		{
+        #region Button clicked events
 
-			// Update counter and label
+        partial void ButtonSearchClicked(AppKit.NSButton sender)
+        {
+            var alert = new NSAlert()
+            {
+                AlertStyle = NSAlertStyle.Informational,
+                InformativeText = txtLookUp.StringValue,
+                MessageText = "Will lookup this word",
+            };
+            alert.RunModal();
+
+            // Update counter and label
             //labelHelloWorld.StringValue = string.Format("The button has been clicked {0} time{1}.", ++numberOfTimesClicked, (numberOfTimesClicked < 2) ? "" : "s");
-		}
+        }
+
+        partial void ButtonCopyWordClicked(AppKit.NSButton sender)
+        {
+        }
+
+        partial void ButtonCopyDefinitionsClicked(AppKit.NSButton sender)
+        {
+        }
+
+        partial void ButtonCopyTranslationClicked(AppKit.NSButton sender)
+        {
+        }
+
+        partial void ButtonCopyPronunciationClicked(AppKit.NSButton sender)
+        {
+        }
+
+        partial void ButtonCopyEndingsClicked(AppKit.NSButton sender)
+        {
+        }
+
+        partial void ButtonCopyExamplesClicked(AppKit.NSButton sender)
+        {
+        }
+
+		#endregion
     }
 }
