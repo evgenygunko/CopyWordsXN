@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CopyWordsMac.Models
 {
@@ -8,7 +9,7 @@ namespace CopyWordsMac.Models
         public string Endings = "<>";
         public string Pronunciation = "<>";
         public string Definitions = "<>";
-        public string Examples = "<>";
-        public string Translations = "<>";
+        public List<string> Examples = new List<string>();
+        public List<RussianTranslation> Translations = new List<RussianTranslation>();
     }
 }
