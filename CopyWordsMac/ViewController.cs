@@ -39,25 +39,14 @@ namespace CopyWordsMac
 
         #region Button clicked events
 
-        async partial void ButtonSearchClicked(AppKit.NSButton sender)
+        partial void txtLookUpKeyDown(AppKit.NSTextField sender)
         {
-            //var alert = new NSAlert()
-            //{
-            //    AlertStyle = NSAlertStyle.Informational,
-            //    InformativeText = txtLookUp.StringValue,
-            //    MessageText = "Will lookup this word",
-            //};
-            //alert.RunModal();
+            LookUpWordAsync();
+        }
 
-            LookUpWordCommand command = new LookUpWordCommand();
-            //todo: add try catch
-            WordModel wordModel = await command.LookUpWordAsync(txtLookUp.StringValue);
-
-            if (wordModel != null)
-            {
-                _wordModel = wordModel;
-                UpdateControls();
-            }
+        partial void ButtonSearchClicked(AppKit.NSButton sender)
+        {
+            LookUpWordAsync();
         }
 
         partial void ButtonCopyWordClicked(AppKit.NSButton sender)
@@ -87,6 +76,24 @@ namespace CopyWordsMac
         #endregion
 
         #region Private Methods
+
+        private async void LookUpWordAsync()
+        {
+            if (string.IsNullOrEmpty(txtLookUp.StringValue))
+            {
+                return;
+            }
+
+            LookUpWordCommand command = new LookUpWordCommand();
+            //todo: add try catch
+            WordModel wordModel = await command.LookUpWordAsync(txtLookUp.StringValue);
+
+            if (wordModel != null)
+            {
+                _wordModel = wordModel;
+                UpdateControls();
+            }
+        }
 
         private void UpdateControls()
         {
