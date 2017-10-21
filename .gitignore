@@ -127,5 +127,9 @@ UpgradeLog*.htm
 .ntvs_analysis.dat
 node_modules/
 
+# JetBrains Rider
+.idea/
+*.sln.iml
+
 # Typescript v1 declaration files
 typings/
