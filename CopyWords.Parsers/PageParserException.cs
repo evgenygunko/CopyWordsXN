@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CopyWordsMac.Parsers
+namespace CopyWords.Parsers
 {
     public class PageParserException : Exception
     {

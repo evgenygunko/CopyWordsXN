@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CopyWordsMac.Parsers
+namespace CopyWords.Parsers
 {
     public class DDOPageParser : PageParserBase
     {

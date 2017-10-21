@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CopyWordsMac.Models;
+using CopyWords.Parsers.Models;
 using HtmlAgilityPack;
 
-namespace CopyWordsMac.Parsers
+namespace CopyWords.Parsers
 {
     public class SlovardkPageParser : PageParserBase
     {

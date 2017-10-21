@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CopyWordsMac.Models
+namespace CopyWords.Parsers.Models
 {
     public class RussianTranslation
     {

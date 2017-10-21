@@ -1,16 +1,18 @@
 ﻿using System;
-using System.IO;
-using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using AppKit;
-using CopyWordsMac.Models;
-using CopyWordsMac.Parsers;
+using CopyWords.Parsers.Models;
+using CopyWords.Parsers;
+using System.Threading.Tasks;
 
 namespace CopyWordsMac.Commands
 {
     public class LookUpWordCommand
     {
-        public WordModel LookUpWord(string wordToLookUp)
+        private HttpClient _httpClient = new HttpClient(); 
+
+        public async Task<WordModel> LookUpWordAsync(string wordToLookUp)
         {
             if (string.IsNullOrEmpty(wordToLookUp))
             {
@@ -33,14 +35,14 @@ namespace CopyWordsMac.Commands
             string ddoUrl = $"http://ordnet.dk/ddo/ordbog?query={wordToLookUp}&search=S%C3%B8g";
       
             // Download and parse a page from DDO
-            Stream ddoStream = DownloadPage(ddoUrl);
-            if (ddoStream == null)
+            string ddoPageHtml = await DownloadPageAsync(ddoUrl);
+            if (string.IsNullOrEmpty(ddoPageHtml))
             {
                 return null;
             }
 
             DDOPageParser ddoPageParser = new DDOPageParser();
-            ddoPageParser.LoadStream(ddoStream);
+            ddoPageParser.LoadHtml(ddoPageHtml);
 
             WordModel wordViewModel = new WordModel();
             wordViewModel.Word = ddoPageParser.ParseWord();
@@ -53,9 +55,9 @@ namespace CopyWordsMac.Commands
             // Download and parse a page from Slovar.dk
             string slovardkUrl = GetSlovardkUri(wordToLookUp);
 
-            Stream slovardkStream = DownloadPage(slovardkUrl);
+            string slovardkPageHtml = await DownloadPageAsync(slovardkUrl);
             SlovardkPageParser slovardkPageParser = new SlovardkPageParser();
-            slovardkPageParser.LoadStream(slovardkStream);
+            slovardkPageParser.LoadHtml(slovardkPageHtml);
 
             var translations = slovardkPageParser.ParseWord();
             wordViewModel.Translations = translations;
@@ -80,43 +82,10 @@ namespace CopyWordsMac.Commands
             return $"http://www.slovar.dk/tdansk/{wordToLookUp}/?";
         }
 
-        private static Stream DownloadPage(string url)
+        private async Task<string> DownloadPageAsync(string url)
         {
-            //Create a WebRequest to get the file
-            HttpWebRequest fileReq = (HttpWebRequest)HttpWebRequest.Create(url);
-
-            HttpWebResponse fileResp = null;
-
-            try
-            {
-                //Create a response for this request
-                fileResp = (HttpWebResponse)fileReq.GetResponse();
-            }
-            catch (WebException ex)
-            {
-                HttpWebResponse errorResponse = ex.Response as HttpWebResponse;
-                if (errorResponse.StatusCode == HttpStatusCode.NotFound)
-                {
-                    var alert = new NSAlert()
-                    {
-                        AlertStyle = NSAlertStyle.Warning,
-                        MessageText = "Cannot find word",
-                        InformativeText = "Den Danske Ordbog server returned NotFound exception.",
-                    };
-                    alert.RunModal();
-
-                    return null;
-                }
-            }
-
-            if (fileReq.ContentLength > 0)
-            {
-                fileResp.ContentLength = fileReq.ContentLength;
-            }
-
-            //Get the Stream returned from the response
-            Stream stream = fileResp.GetResponseStream();
-            return stream;
+            string content = await _httpClient.GetStringAsync(url);
+            return content;
         }
     }
 }

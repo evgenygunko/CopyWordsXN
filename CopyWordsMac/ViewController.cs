@@ -2,7 +2,7 @@
 
 using AppKit;
 using CopyWordsMac.Commands;
-using CopyWordsMac.Models;
+using CopyWords.Parsers.Models;
 using Foundation;
 
 namespace CopyWordsMac
@@ -39,7 +39,7 @@ namespace CopyWordsMac
 
         #region Button clicked events
 
-        partial void ButtonSearchClicked(AppKit.NSButton sender)
+        async partial void ButtonSearchClicked(AppKit.NSButton sender)
         {
             //var alert = new NSAlert()
             //{
@@ -51,7 +51,7 @@ namespace CopyWordsMac
 
             LookUpWordCommand command = new LookUpWordCommand();
             //todo: add try catch
-            WordModel wordModel = command.LookUpWord(txtLookUp.StringValue);
+            WordModel wordModel = await command.LookUpWordAsync(txtLookUp.StringValue);
 
             if (wordModel != null)
             {

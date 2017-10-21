@@ -70,9 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Models\" />
     <Folder Include="Commands\" />
-    <Folder Include="Parsers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -86,16 +84,16 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\WordModel.cs" />
     <Compile Include="Commands\LookUpWordCommand.cs" />
-    <Compile Include="Parsers\DDOPageParser.cs" />
-    <Compile Include="Parsers\PageParserBase.cs" />
-    <Compile Include="Parsers\SlovardkPageParser.cs" />
-    <Compile Include="Models\RussianTranslation.cs" />
-    <Compile Include="Parsers\PageParserException.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CopyWords.Parsers\CopyWords.Parsers.csproj">
+      <Project>{AAE20C07-D8E0-4772-95AB-C93B7777066D}</Project>
+      <Name>CopyWords.Parsers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.1\build\netstandard2.0\NETStandard.Library.targets')" />

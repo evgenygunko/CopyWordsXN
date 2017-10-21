@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CopyWordsMac.Models
+namespace CopyWords.Parsers.Models
 {
     public class WordModel
     {

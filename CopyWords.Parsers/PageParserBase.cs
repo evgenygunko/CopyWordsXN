@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using HtmlAgilityPack;
 
-namespace CopyWordsMac.Parsers
+namespace CopyWords.Parsers
 {
     public abstract class PageParserBase
     {
@@ -20,15 +20,15 @@ namespace CopyWordsMac.Parsers
             return WebUtility.HtmlDecode(innerText).Trim();
         }
 
-        public void LoadStream(Stream stream)
+        public void LoadHtml(string content)
         {
-            if (stream == null)
+            if (string.IsNullOrEmpty(content))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(content));
             }
 
             _htmlDocument = new HtmlDocument();
-            _htmlDocument.Load(stream);
+            _htmlDocument.LoadHtml(content);
 
             if (_htmlDocument.DocumentNode == null)
             {
