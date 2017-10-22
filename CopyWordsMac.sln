@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWordsMac", "CopyWordsMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWords.Parsers", "CopyWords.Parsers\CopyWords.Parsers.csproj", "{AAE20C07-D8E0-4772-95AB-C93B7777066D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWords.Parsers.Tests", "CopyWords.Parsers.Tests\CopyWords.Parsers.Tests.csproj", "{9B011A56-FE33-4C7F-9D27-57692F937474}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +21,9 @@ Global
 		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Debug|x86.Build.0 = Debug|Any CPU
 		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Release|x86.ActiveCfg = Release|Any CPU
 		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Release|x86.Build.0 = Release|Any CPU
+		{9B011A56-FE33-4C7F-9D27-57692F937474}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B011A56-FE33-4C7F-9D27-57692F937474}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B011A56-FE33-4C7F-9D27-57692F937474}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B011A56-FE33-4C7F-9D27-57692F937474}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

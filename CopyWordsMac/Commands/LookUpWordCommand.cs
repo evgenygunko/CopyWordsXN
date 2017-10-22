@@ -33,7 +33,7 @@ namespace CopyWordsMac.Commands
             }
 
             string ddoUrl = $"http://ordnet.dk/ddo/ordbog?query={wordToLookUp}&search=S%C3%B8g";
-      
+
             // Download and parse a page from DDO
             string ddoPageHtml = await DownloadPageAsync(ddoUrl);
             if (string.IsNullOrEmpty(ddoPageHtml))

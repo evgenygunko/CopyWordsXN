@@ -750,7 +750,7 @@ Cg
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1xM-vU-Ks6" userLabel="ButtonCopyWord">
-                                                <rect key="frame" x="489" y="-5.5" width="82" height="32"/>
+                                                <rect key="frame" x="489" y="-5" width="82" height="32"/>
                                                 <buttonCell key="cell" type="push" title="kopire" bezelStyle="rounded" image="buttonCell:RwY-gx-Re1:image" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RwY-gx-Re1">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
