@@ -3,13 +3,14 @@
 using AppKit;
 using CopyWords.Parsers;
 using CopyWords.Parsers.Models;
+using CopyWordsMac.ViewModels;
 using Foundation;
 
 namespace CopyWordsMac
 {
     public partial class ViewController : NSViewController
     {
-        private WordModel _wordModel = new WordModel();
+        private WordViewModel _wordViewModel = new WordViewModel();
 
         public ViewController(IntPtr handle) : base(handle)
         {
@@ -94,12 +95,12 @@ namespace CopyWordsMac
                 return;
             }
 
-            //todo: add try catch
-            WordModel wordModel;
+            WordViewModel wordViewModel = null;
 
             try
             {
-                wordModel = await command.LookUpWordAsync(word);
+                WordModel wordModel = await command.LookUpWordAsync(word);
+                wordViewModel = WordViewModel.CreateFromModel(wordModel);
             }
             catch (Exception ex)
             {
@@ -107,9 +108,9 @@ namespace CopyWordsMac
                 return;
             }
 
-            if (wordModel != null)
+            if (wordViewModel != null)
             {
-                _wordModel = wordModel;
+                _wordViewModel = wordViewModel;
                 UpdateControls();
 
                 return;
@@ -120,12 +121,12 @@ namespace CopyWordsMac
 
         private void UpdateControls()
         {
-            LabelWord.StringValue = _wordModel.Word;
-            LabelDefinitions.StringValue = _wordModel.Definitions;
-            //LabelTranslation.StringValue = _wordModel.Translations;
-            LabelPronunciation.StringValue = _wordModel.Pronunciation;
-            LabelEndings.StringValue = _wordModel.Endings;
-            //LabelExamples.StringValue = _wordModel.Examples;
+            LabelWord.StringValue = _wordViewModel.Word;
+            LabelDefinitions.StringValue = _wordViewModel.Definitions;
+            LabelTranslation.StringValue = _wordViewModel.Translations;
+            LabelPronunciation.StringValue = _wordViewModel.Pronunciation;
+            LabelEndings.StringValue = _wordViewModel.Endings;
+            LabelExamples.StringValue = _wordViewModel.Examples;
         }
 
         private void ShowWarningAlert(string messageText, string informativeText)

@@ -4,13 +4,12 @@ namespace CopyWords.Parsers.Models
 {
     public class WordModel
     {
-        public string Word = "<>";
-        public string Endings = "<>";
-        public string Pronunciation = "<>";
-        public string Definitions = "<>";
-        public string Sound = "<>";
-
-        public List<string> Examples = new List<string>();
-        public List<RussianTranslation> Translations = new List<RussianTranslation>();
+        public string Word { get; set; }
+        public string Endings { get; set; }
+        public string Pronunciation { get; set; }
+        public string Definitions { get; set; }
+        public string Sound { get; set; }
+        public List<string> Examples { get; set; }
+        public List<RussianTranslation> Translations { get; set; }
     }
 }
