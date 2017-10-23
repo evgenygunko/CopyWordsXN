@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text;
-using CopyWords.Parsers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CopyWords.Parsers.Tests
@@ -10,7 +9,7 @@ namespace CopyWords.Parsers.Tests
     public class SlovardkPageParserTests
     {
         private static string _path;
-        private static System.Text.Encoding _encoding1251;
+        private static Encoding _encoding1251;
 
         [ClassInitialize]
         public static void ClassInitialze(TestContext context)

@@ -1,7 +1,7 @@
 ﻿using System;
 
 using AppKit;
-using CopyWordsMac.Commands;
+using CopyWords.Parsers;
 using CopyWords.Parsers.Models;
 using Foundation;
 
@@ -84,15 +84,38 @@ namespace CopyWordsMac
                 return;
             }
 
-            LookUpWordCommand command = new LookUpWordCommand();
+            string word = txtLookUp.StringValue;
+            LookUpWord command = new LookUpWord();
+
+            (bool isValid, string errorMessage) = command.CheckThatWordIsValid(word);
+            if (!isValid)
+            {
+                ShowWarningAlert("Invalid search term", errorMessage);
+                return;
+            }
+
             //todo: add try catch
-            WordModel wordModel = await command.LookUpWordAsync(txtLookUp.StringValue);
+            WordModel wordModel;
+
+            try
+            {
+                wordModel = await command.LookUpWordAsync(word);
+            }
+            catch (Exception ex)
+            {
+                ShowWarningAlert("Error occurred while searching word", ex.Message);
+                return;
+            }
 
             if (wordModel != null)
             {
                 _wordModel = wordModel;
                 UpdateControls();
+
+                return;
             }
+
+            ShowWarningAlert("Cannot find word", $"Cannot find word {word} in DDO.");
         }
 
         private void UpdateControls()
@@ -103,6 +126,17 @@ namespace CopyWordsMac
             LabelPronunciation.StringValue = _wordModel.Pronunciation;
             LabelEndings.StringValue = _wordModel.Endings;
             //LabelExamples.StringValue = _wordModel.Examples;
+        }
+
+        private void ShowWarningAlert(string messageText, string informativeText)
+        {
+            var alert = new NSAlert()
+            {
+                AlertStyle = NSAlertStyle.Warning,
+                MessageText = messageText,
+                InformativeText = informativeText,
+            };
+            alert.RunModal();
         }
 
         #endregion

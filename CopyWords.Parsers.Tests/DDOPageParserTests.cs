@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using CopyWords.Parsers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CopyWords.Parsers.Tests
@@ -14,20 +11,20 @@ namespace CopyWords.Parsers.Tests
     public class DDOPageParserTests
     {
         private static string _path;
-        
+
         [ClassInitialize]
         public static void ClassInitialze(TestContext context)
         {
             _path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         }
-        
+
         #region LoadStream tests
 
         [TestMethod]
         public void LoadHtml_DoesntThowExpception_ForValidString()
         {
             string content = Helpers.GetSimpleHTMLPage(GetTestFilePath("SimplePage.html"));
-            
+
             DDOPageParser parser = new DDOPageParser();
             parser.LoadHtml(content);
         }
@@ -283,7 +280,7 @@ namespace CopyWords.Parsers.Tests
 
             DDOPageParser parser = new DDOPageParser();
             parser.LoadHtml(content);
-            
+
             List<string> examples = parser.ParseExamples();
 
             List<string> expected = new List<string>();
@@ -306,14 +303,14 @@ namespace CopyWords.Parsers.Tests
 
             DDOPageParser parser = new DDOPageParser();
             parser.LoadHtml(content);
-            
+
             List<string> examples = parser.ParseExamples();
 
             Assert.AreEqual(0, examples.Count);
         }
 
         #endregion
-    
+
         private string GetTestFilePath(string fileName)
         {
             return Path.Combine(_path, "TestPages", "ddo", fileName);

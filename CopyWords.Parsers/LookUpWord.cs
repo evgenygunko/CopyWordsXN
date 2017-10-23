@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using AppKit;
 using CopyWords.Parsers.Models;
-using CopyWords.Parsers;
 using System.Threading.Tasks;
 
-namespace CopyWordsMac.Commands
+namespace CopyWords.Parsers
 {
-    public class LookUpWordCommand
+    public class LookUpWord
     {
-        private HttpClient _httpClient = new HttpClient(); 
+        private readonly HttpClient _httpClient = new HttpClient();
+
+        public (bool isValid, string errorMessage) CheckThatWordIsValid(string lookUp)
+        {
+            Regex regex = new Regex(@"^[\w ]+$");
+            bool isValid = regex.IsMatch(lookUp);
+
+            return (isValid, isValid ? null : "Search can only contain alphanumeric characters and spaces.");
+        }
 
         public async Task<WordModel> LookUpWordAsync(string wordToLookUp)
         {
@@ -19,17 +25,10 @@ namespace CopyWordsMac.Commands
                 throw new ArgumentException("LookUp text can't be null or empty.");
             }
 
-            if (!CheckThatWordIsValid(wordToLookUp))
+            (bool isValid, string errorMessage) = CheckThatWordIsValid(wordToLookUp);
+            if (!isValid)
             {
-                var alert = new NSAlert()
-                {
-                    AlertStyle = NSAlertStyle.Warning,
-					MessageText = "Invalid search term",
-                    InformativeText = "Search can only contain alphanumeric characters and spaces.",
-                };
-                alert.RunModal();
-
-                return null;
+                throw new ArgumentException(errorMessage, nameof(wordToLookUp));
             }
 
             string ddoUrl = $"http://ordnet.dk/ddo/ordbog?query={wordToLookUp}&search=S%C3%B8g";
@@ -44,13 +43,13 @@ namespace CopyWordsMac.Commands
             DDOPageParser ddoPageParser = new DDOPageParser();
             ddoPageParser.LoadHtml(ddoPageHtml);
 
-            WordModel wordViewModel = new WordModel();
-            wordViewModel.Word = ddoPageParser.ParseWord();
-            wordViewModel.Endings = ddoPageParser.ParseEndings();
-            wordViewModel.Pronunciation = ddoPageParser.ParsePronunciation();
-            //wordViewModel.Sound = ddoPageParser.ParseSound();
-            wordViewModel.Definitions = ddoPageParser.ParseDefinitions();
-            wordViewModel.Examples = ddoPageParser.ParseExamples();
+            WordModel wordModel = new WordModel();
+            wordModel.Word = ddoPageParser.ParseWord();
+            wordModel.Endings = ddoPageParser.ParseEndings();
+            wordModel.Pronunciation = ddoPageParser.ParsePronunciation();
+            wordModel.Sound = ddoPageParser.ParseSound();
+            wordModel.Definitions = ddoPageParser.ParseDefinitions();
+            wordModel.Examples = ddoPageParser.ParseExamples();
 
             // Download and parse a page from Slovar.dk
             string slovardkUrl = GetSlovardkUri(wordToLookUp);
@@ -60,15 +59,9 @@ namespace CopyWordsMac.Commands
             slovardkPageParser.LoadHtml(slovardkPageHtml);
 
             var translations = slovardkPageParser.ParseWord();
-            wordViewModel.Translations = translations;
+            wordModel.Translations = translations;
 
-            return wordViewModel;
-        }
-
-        internal static bool CheckThatWordIsValid(string lookUp)
-        {
-            Regex regex = new Regex(@"^[\w ]+$");
-            return regex.IsMatch(lookUp);
+            return wordModel;
         }
 
         internal static string GetSlovardkUri(string wordToLookUp)
@@ -84,7 +77,21 @@ namespace CopyWordsMac.Commands
 
         private async Task<string> DownloadPageAsync(string url)
         {
-            string content = await _httpClient.GetStringAsync(url);
+            string content = null;
+
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                content = await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+                {
+                    throw new ServerErrorException("Server returned " + response.StatusCode);
+                }
+            }
+
             return content;
         }
     }

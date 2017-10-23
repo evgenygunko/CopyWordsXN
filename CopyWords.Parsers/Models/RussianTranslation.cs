@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CopyWords.Parsers.Models
+﻿namespace CopyWords.Parsers.Models
 {
     public class RussianTranslation
     {

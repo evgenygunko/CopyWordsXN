@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CopyWords.Parsers.Models
 {
@@ -9,6 +8,8 @@ namespace CopyWords.Parsers.Models
         public string Endings = "<>";
         public string Pronunciation = "<>";
         public string Definitions = "<>";
+        public string Sound = "<>";
+
         public List<string> Examples = new List<string>();
         public List<RussianTranslation> Translations = new List<RussianTranslation>();
     }
