@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CopyWords.Parsers.Tests
 {
-    /*[TestClass]
+    [TestClass]
     public class LookupInDRDictCommandTests
     {
         #region Accurate mapping
@@ -292,5 +292,5 @@ namespace CopyWords.Parsers.Tests
                 Assert.Fail(message);
             }
         }
-    }*/
+    }
 }
