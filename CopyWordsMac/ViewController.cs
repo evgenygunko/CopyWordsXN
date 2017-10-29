@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Threading.Tasks;
 using AppKit;
 using CopyWords.Parsers;
 using CopyWords.Parsers.Models;
@@ -81,6 +81,16 @@ namespace CopyWordsMac
             Clipboard.SetText(LabelExamples.StringValue);
         }
 
+        async partial void ButtonPlaySoundClicked(AppKit.NSButton sender)
+        {
+            await AudioManager.PlaySoundAsync(_wordViewModel.Sound);
+        }
+
+        async partial void ButtonSaveSoundClicked(AppKit.NSButton sender)
+        {
+            await AudioManager.SaveSoundFileAsync(_wordViewModel.Sound, _wordViewModel.Word);
+        }
+
         #endregion
 
         #region Private Methods
@@ -141,6 +151,17 @@ namespace CopyWordsMac
             LabelPronunciation.StringValue = _wordViewModel.Pronunciation;
             LabelEndings.StringValue = _wordViewModel.Endings;
             LabelExamples.StringValue = _wordViewModel.Examples;
+
+            if (!string.IsNullOrEmpty(_wordViewModel.Sound))
+            {
+                ButtonPlaySound.Enabled = true;
+                ButtonSaveSound.Enabled = true;
+            }
+            else
+            {
+                ButtonPlaySound.Enabled = false;
+                ButtonSaveSound.Enabled = false;
+            }
         }
 
         private void ShowWarningAlert(string messageText, string informativeText)

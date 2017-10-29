@@ -1071,32 +1071,52 @@ Cg
                                                     <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vXH-jw-wpN">
-                                                <rect key="frame" x="76" y="4" width="44" height="17"/>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="dXT-zd-Ubr" userLabel="Play sound Button">
+                                                <rect key="frame" x="78" y="1" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="kR0-fl-QoV"/>
+                                                    <constraint firstAttribute="height" constant="20" id="63u-OL-mLX"/>
+                                                    <constraint firstAttribute="width" constant="20" id="y6y-j7-lLW"/>
                                                 </constraints>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="play" id="c34-go-9PP">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Image-2" imagePosition="only" alignment="center" inset="2" id="D3i-LC-5lz">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-AG-FVp">
-                                                <rect key="frame" x="124" y="4" width="443" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="save" id="cL4-Iq-3WI">
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="ButtonPlaySoundClicked:" target="XfG-lQ-9wD" id="NJd-re-YOf"/>
+                                                </connections>
+                                            </button>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="byi-jo-4uc" userLabel="Save sound Button">
+                                                <rect key="frame" x="106" y="1" width="20" height="20"/>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Image-1" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0i7-2D-4EU">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="ButtonSaveSoundClicked:" target="XfG-lQ-9wD" id="hVD-bl-8Hh"/>
+                                                </connections>
+                                            </button>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XFT-wg-faJ">
+                                                <rect key="frame" x="132" y="4" width="435" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="0oE-gu-YjI">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="byi-jo-4uc" firstAttribute="height" secondItem="dXT-zd-Ubr" secondAttribute="height" id="8ju-X6-pab"/>
+                                            <constraint firstItem="byi-jo-4uc" firstAttribute="leading" secondItem="dXT-zd-Ubr" secondAttribute="trailing" constant="8" id="hE8-Tr-Khe"/>
+                                            <constraint firstItem="byi-jo-4uc" firstAttribute="width" secondItem="dXT-zd-Ubr" secondAttribute="width" id="uqO-3l-6X3"/>
+                                        </constraints>
                                         <visibilityPriorities>
+                                            <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
@@ -1270,6 +1290,8 @@ Cg
                     </view>
                     <connections>
                         <outlet property="ActivityLog" destination="SH1-4T-gQZ" id="HIX-e5-jro"/>
+                        <outlet property="ButtonPlaySound" destination="dXT-zd-Ubr" id="SCM-yH-twz"/>
+                        <outlet property="ButtonSaveSound" destination="byi-jo-4uc" id="1ST-MX-4pD"/>
                         <outlet property="LabelDefinitions" destination="1Va-hT-ps3" id="R9t-fW-cYv"/>
                         <outlet property="LabelEndings" destination="a1V-3s-EcB" id="LER-ah-eNB"/>
                         <outlet property="LabelExamples" destination="Kue-EG-dEM" id="9bc-5l-dm5"/>
@@ -1283,6 +1305,8 @@ Cg
         </scene>
     </scenes>
     <resources>
+        <image name="Image-1" width="16" height="16"/>
+        <image name="Image-2" width="20" height="20"/>
         <image name="buttonCell:RwY-gx-Re1:image" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
