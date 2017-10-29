@@ -13,24 +13,26 @@ namespace CopyWordsMac.ViewModels
         public string Definitions { get; set; } = "<>";
         public string Sound { get; set; } = "<>";
         public string Examples { get; set; } = "<>";
-        public string Translations { get; set; } = "<>";
+        public List<RussianTranslation> Translations = new List<RussianTranslation>();
 
         internal static WordViewModel CreateFromModel(WordModel wordModel)
         {
-            WordViewModel wordViewModel = new WordViewModel()
-            {
-                Word = wordModel.Word,
-                Endings = wordModel.Endings,
-                Pronunciation = wordModel.Pronunciation,
-                Definitions = wordModel.Definitions,
-                Sound = wordModel.Sound
-            };
+            WordViewModel wordViewModel = new WordViewModel();
 
-            string delimeter = Environment.NewLine;
-
-            if (wordModel.Examples != null && wordModel.Examples.Count > 0)
+            if (wordModel != null)
             {
-                wordViewModel.Examples = wordModel.Examples.Aggregate((i, j) => i + delimeter + j);
+                wordViewModel.Word = wordModel.Word;
+                wordViewModel.Endings = wordModel.Endings;
+                wordViewModel.Pronunciation = wordModel.Pronunciation;
+                wordViewModel.Definitions = wordModel.Definitions;
+                wordViewModel.Sound = wordModel.Sound;
+                wordViewModel.Translations = wordModel.Translations;
+            
+                if (wordModel.Examples != null && wordModel.Examples.Count > 0)
+                {
+                    string delimeter = Environment.NewLine;
+                    wordViewModel.Examples = wordModel.Examples.Aggregate((i, j) => i + delimeter + j);
+                }
             }
 
             return wordViewModel;

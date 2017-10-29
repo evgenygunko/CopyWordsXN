@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using CopyWords.Parsers.Models;
 using System.Threading.Tasks;
+using System.Text;
+using System.Linq;
 
 namespace CopyWords.Parsers
 {
@@ -34,7 +36,7 @@ namespace CopyWords.Parsers
             string ddoUrl = $"http://ordnet.dk/ddo/ordbog?query={wordToLookUp}&search=S%C3%B8g";
 
             // Download and parse a page from DDO
-            string ddoPageHtml = await DownloadPageAsync(ddoUrl);
+            string ddoPageHtml = await DownloadPageAsync(ddoUrl, Encoding.UTF8);
             if (string.IsNullOrEmpty(ddoPageHtml))
             {
                 return null;
@@ -54,7 +56,7 @@ namespace CopyWords.Parsers
             // Download and parse a page from Slovar.dk
             string slovardkUrl = GetSlovardkUri(wordToLookUp);
 
-            string slovardkPageHtml = await DownloadPageAsync(slovardkUrl);
+            string slovardkPageHtml = await DownloadPageAsync(slovardkUrl, Encoding.GetEncoding(1251));
             SlovardkPageParser slovardkPageParser = new SlovardkPageParser();
             slovardkPageParser.LoadHtml(slovardkPageHtml);
 
@@ -75,14 +77,15 @@ namespace CopyWords.Parsers
             return $"http://www.slovar.dk/tdansk/{wordToLookUp}/?";
         }
 
-        private async Task<string> DownloadPageAsync(string url)
+        private async Task<string> DownloadPageAsync(string url, Encoding encoding)
         {
             string content = null;
 
             HttpResponseMessage response = await _httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                content = await response.Content.ReadAsStringAsync();
+                byte[] bytes = await response.Content.ReadAsByteArrayAsync();
+                content = encoding.GetString(bytes, 0, bytes.Length - 1);
             }
             else
             {

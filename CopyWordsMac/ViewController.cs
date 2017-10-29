@@ -12,6 +12,8 @@ namespace CopyWordsMac
     {
         private WordViewModel _wordViewModel = new WordViewModel();
 
+        private TranslationsDataSource log = new TranslationsDataSource();
+
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -21,6 +23,9 @@ namespace CopyWordsMac
             base.ViewDidLoad();
 
             // Do any additional setup after loading the view.
+
+            ActivityLog.DataSource = log;
+            ActivityLog.Delegate = new TranslationsDelegate(log);
 
             UpdateControls();
         }
@@ -101,6 +106,14 @@ namespace CopyWordsMac
             {
                 WordModel wordModel = await command.LookUpWordAsync(word);
                 wordViewModel = WordViewModel.CreateFromModel(wordModel);
+
+                log.Translations.Clear();
+                foreach(RussianTranslation translation in wordViewModel.Translations)
+                {
+                    log.Translations.Add(new RussianTranslation(translation.DanishWord, translation.Translation));                
+                }
+
+                ActivityLog.ReloadData();
             }
             catch (Exception ex)
             {
@@ -123,7 +136,6 @@ namespace CopyWordsMac
         {
             LabelWord.StringValue = _wordViewModel.Word;
             LabelDefinitions.StringValue = _wordViewModel.Definitions;
-            LabelTranslation.StringValue = _wordViewModel.Translations;
             LabelPronunciation.StringValue = _wordViewModel.Pronunciation;
             LabelEndings.StringValue = _wordViewModel.Endings;
             LabelExamples.StringValue = _wordViewModel.Examples;

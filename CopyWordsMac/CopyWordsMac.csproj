@@ -86,6 +86,8 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\WordViewModel.cs" />
+    <Compile Include="ViewModels\TranslationsDataSource.cs" />
+    <Compile Include="ViewModels\TranslationsDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
