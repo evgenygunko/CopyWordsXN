@@ -3,6 +3,7 @@
 using AppKit;
 using CopyWords.Parsers;
 using CopyWords.Parsers.Models;
+using CopyWordsMac.Helpers;
 using CopyWordsMac.ViewModels;
 using Foundation;
 
@@ -57,26 +58,27 @@ namespace CopyWordsMac
 
         partial void ButtonCopyWordClicked(AppKit.NSButton sender)
         {
+            Clipboard.SetText(LabelWord.StringValue);
         }
 
         partial void ButtonCopyDefinitionsClicked(AppKit.NSButton sender)
         {
-        }
-
-        partial void ButtonCopyTranslationClicked(AppKit.NSButton sender)
-        {
+            Clipboard.SetText(LabelDefinitions.StringValue);
         }
 
         partial void ButtonCopyPronunciationClicked(AppKit.NSButton sender)
         {
+            Clipboard.SetText(LabelPronunciation.StringValue);
         }
 
         partial void ButtonCopyEndingsClicked(AppKit.NSButton sender)
         {
+            Clipboard.SetText(LabelEndings.StringValue);
         }
 
         partial void ButtonCopyExamplesClicked(AppKit.NSButton sender)
         {
+            Clipboard.SetText(LabelExamples.StringValue);
         }
 
         #endregion

@@ -48,9 +48,6 @@ namespace CopyWordsMac
 		[Action ("ButtonCopyPronunciationClicked:")]
 		partial void ButtonCopyPronunciationClicked (AppKit.NSButton sender);
 
-		[Action ("ButtonCopyTranslationClicked:")]
-		partial void ButtonCopyTranslationClicked (AppKit.NSButton sender);
-
 		[Action ("ButtonCopyWordClicked:")]
 		partial void ButtonCopyWordClicked (AppKit.NSButton sender);
 
@@ -62,6 +59,11 @@ namespace CopyWordsMac
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ActivityLog != null) {
+				ActivityLog.Dispose ();
+				ActivityLog = null;
+			}
+
 			if (LabelDefinitions != null) {
 				LabelDefinitions.Dispose ();
 				LabelDefinitions = null;
@@ -95,11 +97,6 @@ namespace CopyWordsMac
 			if (txtLookUp != null) {
 				txtLookUp.Dispose ();
 				txtLookUp = null;
-			}
-
-			if (ActivityLog != null) {
-				ActivityLog.Dispose ();
-				ActivityLog = null;
 			}
 		}
 	}

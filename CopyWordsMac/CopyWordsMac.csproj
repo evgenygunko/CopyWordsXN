@@ -72,6 +72,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -88,6 +89,7 @@
     <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="ViewModels\TranslationsDataSource.cs" />
     <Compile Include="ViewModels\TranslationsDelegate.cs" />
+    <Compile Include="Helpers\Clipboard.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

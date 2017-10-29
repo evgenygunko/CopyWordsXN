@@ -2,6 +2,7 @@
 using System.Drawing;
 using AppKit;
 using CopyWords.Parsers.Models;
+using CopyWordsMac.Helpers;
 using CoreGraphics;
 
 namespace CopyWordsMac.ViewModels
@@ -40,14 +41,7 @@ namespace CopyWordsMac.ViewModels
                     buttonView.Activated += (sender, e) => {
                         var btn = sender as NSButton;
                         RussianTranslation translation = DataSource.Translations[(int)btn.Tag];
-
-                        var alert = new NSAlert()
-                        {
-                            AlertStyle = NSAlertStyle.Warning,
-                            MessageText = "Copy text",
-                            InformativeText = translation.Translation,
-                        };
-                        alert.RunModal();
+                        Clipboard.SetText(translation.Translation);
                     };
                 }
 
