@@ -72,7 +72,6 @@
     <ImageAsset Include="Assets.xcassets\Image-1.imageset\save.png" />
     <ImageAsset Include="Assets.xcassets\Image-2.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Image-2.imageset\speaker-20.png" />
-    <ImageAsset Include="Resources\Assets.xcassets\Image-2.imageset\speaker-20.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
