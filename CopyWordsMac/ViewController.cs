@@ -46,14 +46,14 @@ namespace CopyWordsMac
 
         #region Button clicked events
 
-        partial void txtLookUpKeyDown(AppKit.NSTextField sender)
+        async partial void txtLookUpKeyDown(AppKit.NSTextField sender)
         {
-            LookUpWordAsync();
+            await LookUpWordAsync();
         }
 
-        partial void ButtonSearchClicked(AppKit.NSButton sender)
+        async partial void ButtonSearchClicked(AppKit.NSButton sender)
         {
-            LookUpWordAsync();
+            await LookUpWordAsync();
         }
 
         partial void ButtonCopyWordClicked(AppKit.NSButton sender)
@@ -95,7 +95,7 @@ namespace CopyWordsMac
 
         #region Private Methods
 
-        private async void LookUpWordAsync()
+        private async Task LookUpWordAsync()
         {
             if (string.IsNullOrEmpty(txtLookUp.StringValue))
             {
@@ -126,6 +126,11 @@ namespace CopyWordsMac
                 }
 
                 ActivityLog.ReloadData();
+
+                if (wordModel == null)
+                {
+                    ShowInfoAlert("Cannot find word", $"Den Danske Ordbog doesn't have a page for '{word}'");
+                }
             }
             catch (Exception ex)
             {
@@ -175,6 +180,16 @@ namespace CopyWordsMac
             alert.RunModal();
         }
 
+        private void ShowInfoAlert(string messageText, string informativeText)
+        {
+            var alert = new NSAlert()
+            {
+                AlertStyle = NSAlertStyle.Informational,
+                MessageText = messageText,
+                InformativeText = informativeText,
+            };
+            alert.RunModal();
+        }
         #endregion
     }
 }
