@@ -24,7 +24,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="Vzs-P3-rTw" kind="modal" id="08j-5M-fpD"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -671,6 +675,88 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
+        <!--Preferences-->
+        <scene sceneID="JRT-ho-R9B">
+            <objects>
+                <viewController title="Preferences" id="Vzs-P3-rTw" customClass="PreverencesViewController" sceneMemberID="viewController">
+                    <view key="view" id="V5F-Kd-Ksn">
+                        <rect key="frame" x="0.0" y="0.0" width="485" height="140"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-Zt-x81">
+                                <rect key="frame" x="18" y="103" width="201" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Russisk-Dansk ditionary:" id="fC9-zO-3WB">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8sC-CQ-EDF" userLabel="TextDictionaryFolderPath">
+                                <rect key="frame" x="20" y="73" width="409" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ugv-uF-TTu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TEA-8F-Xc2" userLabel="ButtonSelectFile">
+                                <rect key="frame" x="431" y="67" width="52" height="32"/>
+                                <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t9g-Or-9SF">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ButtonSelectFileClicked:" target="Vzs-P3-rTw" id="Cru-gM-8eS"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gaq-3j-bks" userLabel="ButtonCancel">
+                                <rect key="frame" x="401" y="21" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="crb-Jx-Mda">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ButtonCancelClicked:" target="Vzs-P3-rTw" id="aCa-Ot-IdN"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pQY-iq-uqc" userLabel="ButtonOK">
+                                <rect key="frame" x="346" y="21" width="59" height="32"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="67h-rL-Hdi">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ButtonOKClicked:" target="Vzs-P3-rTw" id="RCS-KK-Y3j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="gaq-3j-bks" firstAttribute="baseline" secondItem="pQY-iq-uqc" secondAttribute="baseline" id="4Ww-9y-m3K"/>
+                            <constraint firstItem="5eK-Zt-x81" firstAttribute="leading" secondItem="V5F-Kd-Ksn" secondAttribute="leading" constant="20" id="G5z-wK-H3B"/>
+                            <constraint firstAttribute="trailing" secondItem="TEA-8F-Xc2" secondAttribute="trailing" constant="8" id="H8J-H7-ghj"/>
+                            <constraint firstItem="8sC-CQ-EDF" firstAttribute="top" secondItem="5eK-Zt-x81" secondAttribute="bottom" constant="8" id="T47-GD-vl1"/>
+                            <constraint firstItem="8sC-CQ-EDF" firstAttribute="leading" secondItem="5eK-Zt-x81" secondAttribute="leading" id="W4b-RM-LXc"/>
+                            <constraint firstItem="5eK-Zt-x81" firstAttribute="top" secondItem="V5F-Kd-Ksn" secondAttribute="top" constant="20" id="WAP-Ka-EaE"/>
+                            <constraint firstItem="TEA-8F-Xc2" firstAttribute="leading" secondItem="8sC-CQ-EDF" secondAttribute="trailing" constant="8" id="WOu-rB-2TL"/>
+                            <constraint firstItem="gaq-3j-bks" firstAttribute="top" secondItem="8sC-CQ-EDF" secondAttribute="bottom" constant="24" id="bmt-iF-Sl1"/>
+                            <constraint firstAttribute="trailing" secondItem="gaq-3j-bks" secondAttribute="trailing" constant="8" id="kuT-KY-SSN"/>
+                            <constraint firstItem="gaq-3j-bks" firstAttribute="leading" secondItem="pQY-iq-uqc" secondAttribute="trailing" constant="8" id="o0x-lp-IIY"/>
+                            <constraint firstAttribute="trailing" secondItem="TEA-8F-Xc2" secondAttribute="trailing" constant="8" id="qPT-ht-90B"/>
+                            <constraint firstItem="TEA-8F-Xc2" firstAttribute="top" secondItem="8sC-CQ-EDF" secondAttribute="top" id="rwl-gE-nNy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ButtonOK" destination="pQY-iq-uqc" id="VO1-tA-3eI"/>
+                        <outlet property="TextDictionaryFolderPath" destination="8sC-CQ-EDF" id="FMn-rU-5yV"/>
+                    </connections>
+                </viewController>
+                <customObject id="hTS-B9-jRy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730" y="0.0"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
@@ -787,7 +873,7 @@ Cg
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <segue destination="lkk-fF-PZc" kind="show" id="Gsy-Tl-Ehj"/>
+                                                    <segue destination="lkk-fF-PZc" kind="show" identifier="OpenRusDanskDictionary" id="Gsy-Tl-Ehj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1100,7 +1186,7 @@ Cg
                                                     <constraint firstAttribute="height" constant="20" id="63u-OL-mLX"/>
                                                     <constraint firstAttribute="width" constant="20" id="y6y-j7-lLW"/>
                                                 </constraints>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ImageSave" imagePosition="only" alignment="center" inset="2" id="D3i-LC-5lz">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ImageSpeaker" imagePosition="only" alignment="center" inset="2" id="D3i-LC-5lz">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -1110,7 +1196,7 @@ Cg
                                             </button>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="byi-jo-4uc" userLabel="Save sound Button">
                                                 <rect key="frame" x="106" y="1" width="20" height="20"/>
-                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ImageSpeaker" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0i7-2D-4EU">
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ImageSave" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0i7-2D-4EU">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>

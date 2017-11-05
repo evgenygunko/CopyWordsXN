@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using AppKit;
+using CopyWordsMac.Helpers;
+using System.IO;
 
 namespace CopyWordsMac
 {
@@ -17,6 +19,8 @@ namespace CopyWordsMac
         public RusDanskViewController(IntPtr handle) : base(handle)
         {
         }
+
+        public string Word { get; set; }
 
         public override void ViewDidLoad()
         {
@@ -41,9 +45,19 @@ namespace CopyWordsMac
 
         private void LoadImage()
         {
-            _currentImage = new NSImage("/Users/evgeny/Documents/Dansk-Rissisk ordbog/DATA/0013.jpg");
+            NSUserDefaults user = NSUserDefaults.StandardUserDefaults;
+            string pathToDictionary = user.StringForKey(NSUserDefaultsKeys.DictionaryFolderPath) ?? string.Empty;
 
-            ImageViewPage.Image = _currentImage;
+            string imageFile = Path.Combine(pathToDictionary, "0013.jpg");
+            if (File.Exists(imageFile))
+            {
+                _currentImage = new NSImage(imageFile);
+                ImageViewPage.Image = _currentImage;    
+            }
+            else
+            {
+                AlertManager.ShowWarningAlert("Cannot find dictionary files.", $"Cannot find files for Russisk-Dansk dictionary. Please select a path in Preferences dialog.");
+            }
         }
 
         private NSImage ZoomIn()

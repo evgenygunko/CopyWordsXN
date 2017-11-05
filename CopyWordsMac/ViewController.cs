@@ -44,6 +44,23 @@ namespace CopyWordsMac
             }
         }
 
+        public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+
+            // Take action based on Segue ID
+            switch (segue.Identifier)
+            {
+                case "OpenRusDanskDictionary":
+                    var controller = segue.DestinationController as RusDanskViewController;
+                    controller.Word = txtLookUp.StringValue;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         #region Button clicked events
 
         async partial void txtLookUpKeyDown(AppKit.NSTextField sender)
@@ -108,7 +125,7 @@ namespace CopyWordsMac
             (bool isValid, string errorMessage) = command.CheckThatWordIsValid(word);
             if (!isValid)
             {
-                ShowWarningAlert("Invalid search term", errorMessage);
+                AlertManager.ShowWarningAlert("Invalid search term", errorMessage);
                 return;
             }
 
@@ -129,12 +146,12 @@ namespace CopyWordsMac
 
                 if (wordModel == null)
                 {
-                    ShowInfoAlert("Cannot find word", $"Den Danske Ordbog doesn't have a page for '{word}'");
+                    AlertManager.ShowInfoAlert("Cannot find word", $"Den Danske Ordbog doesn't have a page for '{word}'");
                 }
             }
             catch (Exception ex)
             {
-                ShowWarningAlert("Error occurred while searching word", ex.Message);
+                AlertManager.ShowWarningAlert("Error occurred while searching word", ex.Message);
                 return;
             }
 
@@ -146,7 +163,7 @@ namespace CopyWordsMac
                 return;
             }
 
-            ShowWarningAlert("Cannot find word", $"Cannot find word {word} in DDO.");
+            AlertManager.ShowWarningAlert("Cannot find word", $"Cannot find word {word} in DDO.");
         }
 
         private void UpdateControls()
@@ -169,27 +186,6 @@ namespace CopyWordsMac
             }
         }
 
-        private void ShowWarningAlert(string messageText, string informativeText)
-        {
-            var alert = new NSAlert()
-            {
-                AlertStyle = NSAlertStyle.Warning,
-                MessageText = messageText,
-                InformativeText = informativeText,
-            };
-            alert.RunModal();
-        }
-
-        private void ShowInfoAlert(string messageText, string informativeText)
-        {
-            var alert = new NSAlert()
-            {
-                AlertStyle = NSAlertStyle.Informational,
-                MessageText = messageText,
-                InformativeText = informativeText,
-            };
-            alert.RunModal();
-        }
         #endregion
     }
 }
