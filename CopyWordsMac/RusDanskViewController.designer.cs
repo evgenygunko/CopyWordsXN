@@ -16,7 +16,7 @@ namespace CopyWordsMac
         AppKit.NSImageView ImageViewPage { get; set; }
 
         [Outlet]
-        AppKit.NSTextField LabelImageFIle { get; set; }
+        AppKit.NSTextField LabelImageFile { get; set; }
 
         [Action ("ButtonNextClicked:")]
         partial void ButtonNextClicked (AppKit.NSButton sender);
@@ -32,14 +32,14 @@ namespace CopyWordsMac
         
         void ReleaseDesignerOutlets ()
         {
-            if (LabelImageFIle != null) {
-                LabelImageFIle.Dispose ();
-                LabelImageFIle = null;
-            }
-
             if (ImageViewPage != null) {
                 ImageViewPage.Dispose ();
                 ImageViewPage = null;
+            }
+
+            if (LabelImageFile != null) {
+                LabelImageFile.Dispose ();
+                LabelImageFile = null;
             }
         }
     }

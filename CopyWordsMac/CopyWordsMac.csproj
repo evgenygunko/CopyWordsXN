@@ -116,6 +116,8 @@
     </Compile>
     <Compile Include="Helpers\NSUserDefaultsKeys.cs" />
     <Compile Include="Helpers\AlertManager.cs" />
+    <Compile Include="Helpers\LookupInDRDictionary.cs" />
+    <Compile Include="ViewModels\ScannedImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

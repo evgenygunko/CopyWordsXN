@@ -5,6 +5,7 @@ using Foundation;
 using AppKit;
 using CopyWordsMac.Helpers;
 using System.IO;
+using CopyWordsMac.ViewModels;
 
 namespace CopyWordsMac
 {
@@ -13,21 +14,22 @@ namespace CopyWordsMac
         public const double ZoomStep = 0.3;
 
 		private double _resizeFactor = 1.0;
-        private NSImage _currentImage;
 
         // Called when created from unmanaged code
         public RusDanskViewController(IntPtr handle) : base(handle)
         {
         }
 
-        public string Word { get; set; }
+        public ScannedImageViewModel ViewModel { get; set; }
+
+        #region Event Handlers
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             // Do any additional setup after loading the view.
-            LoadImage();
+            UpdateControls();
         }
 
         partial void ButtonZoomInClicked(NSButton sender)
@@ -39,37 +41,41 @@ namespace CopyWordsMac
         partial void ButtonZoomOutClicked(NSButton sender)
         {
             NSImage resizedImage = ZoomOut();
-
             ImageViewPage.Image = resizedImage;
         }
 
-        private void LoadImage()
+        partial void ButtonNextClicked(AppKit.NSButton sender)
         {
-            NSUserDefaults user = NSUserDefaults.StandardUserDefaults;
-            string pathToDictionary = user.StringForKey(NSUserDefaultsKeys.DictionaryFolderPath) ?? string.Empty;
+            ViewModel.MoveForward();
+            UpdateControls();
+        }
 
-            string imageFile = Path.Combine(pathToDictionary, "0013.jpg");
-            if (File.Exists(imageFile))
-            {
-                _currentImage = new NSImage(imageFile);
-                ImageViewPage.Image = _currentImage;    
-            }
-            else
-            {
-                AlertManager.ShowWarningAlert("Cannot find dictionary files.", $"Cannot find files for Russisk-Dansk dictionary. Please select a path in Preferences dialog.");
-            }
+        partial void ButtonPreviousClicked(AppKit.NSButton sender)
+        {
+            ViewModel.MoveBack();
+            UpdateControls();
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void UpdateControls()
+        {
+            ImageViewPage.Image = ViewModel.CurrentImage;
+            LabelImageFile.StringValue = ViewModel.Title;
         }
 
         private NSImage ZoomIn()
         {
             _resizeFactor += ZoomStep;
-            return ResizeImage(_currentImage, _resizeFactor);
+            return ResizeImage(ViewModel.CurrentImage, _resizeFactor);
         }
 
         private NSImage ZoomOut()
         {
             _resizeFactor -= ZoomStep;
-            return ResizeImage(_currentImage, _resizeFactor);
+            return ResizeImage(ViewModel.CurrentImage, _resizeFactor);
         }
 
         private NSImage ResizeImage(NSImage sourceImage, double resizeFactor)
@@ -89,5 +95,7 @@ namespace CopyWordsMac
 
             return newImage;
         }
+
+        #endregion
     }
 }

@@ -52,8 +52,14 @@ namespace CopyWordsMac
             switch (segue.Identifier)
             {
                 case "OpenRusDanskDictionary":
-                    var controller = segue.DestinationController as RusDanskViewController;
-                    controller.Word = txtLookUp.StringValue;
+                    var command = new LookupInDRDictionary();
+                    var viewModel = command.CreateViewModel(txtLookUp.StringValue);
+
+                    if (viewModel != null)
+                    {
+                        var controller = segue.DestinationController as RusDanskViewController;
+                        controller.ViewModel = viewModel;
+                    }
                     break;
 
                 default:

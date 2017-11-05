@@ -1513,7 +1513,7 @@ Cg
                     </view>
                     <connections>
                         <outlet property="ImageViewPage" destination="cOn-4x-qMq" id="XJu-Oj-qiW"/>
-                        <outlet property="LabelImageFIle" destination="0O8-ZO-03a" id="8aL-Wf-4aL"/>
+                        <outlet property="LabelImageFile" destination="0O8-ZO-03a" id="wtD-9H-WAa"/>
                     </connections>
                 </viewController>
                 <customObject id="8fr-DC-J4j" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
