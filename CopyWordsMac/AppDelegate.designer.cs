@@ -9,11 +9,13 @@ using System.CodeDom.Compiler;
 
 namespace CopyWordsMac
 {
-	partial class AppDelegate
-	{
-		
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    partial class AppDelegate
+    {
+        [Action ("MenuNewWindowClicked:")]
+        partial void MenuNewWindowClicked (AppKit.NSMenuItem sender);
+        
+        void ReleaseDesignerOutlets ()
+        {
+        }
+    }
 }

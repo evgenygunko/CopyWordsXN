@@ -19,5 +19,15 @@ namespace CopyWordsMac
         {
             // Insert code here to tear down your application
         }
+
+        partial void MenuNewWindowClicked(AppKit.NSMenuItem sender)
+        {
+            // Get new window
+            var storyboard = NSStoryboard.FromName("Main", null);
+            var controller = storyboard.InstantiateControllerWithIdentifier("MainWindow") as NSWindowController;
+
+            // Display
+            controller.ShowWindow(this);
+        }
     }
 }
