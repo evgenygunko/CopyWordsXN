@@ -55,6 +55,9 @@
       <HintPath>..\packages\HtmlAgilityPack.1.6.1\lib\netstandard2.0\HtmlAgilityPack.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CopyWords.Parsers">
+      <HintPath>..\packages\CopyWords.Parsers.Evgeny.1.0.0\lib\netstandard2.0\CopyWords.Parsers.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -122,12 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CopyWords.Parsers\CopyWords.Parsers.csproj">
-      <Project>{AAE20C07-D8E0-4772-95AB-C93B7777066D}</Project>
-      <Name>CopyWords.Parsers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\mpthreetest.mp3" />

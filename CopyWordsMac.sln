@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWordsMac", "CopyWordsMac\CopyWordsMac.csproj", "{B268C0A7-BDED-4C52-A6A8-F8C6A02DBE53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWords.Parsers", "CopyWords.Parsers\CopyWords.Parsers.csproj", "{AAE20C07-D8E0-4772-95AB-C93B7777066D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyWords.Parsers.Tests", "CopyWords.Parsers.Tests\CopyWords.Parsers.Tests.csproj", "{9B011A56-FE33-4C7F-9D27-57692F937474}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,13 +13,5 @@ Global
 		{B268C0A7-BDED-4C52-A6A8-F8C6A02DBE53}.Debug|x86.Build.0 = Debug|x86
 		{B268C0A7-BDED-4C52-A6A8-F8C6A02DBE53}.Release|x86.ActiveCfg = Release|x86
 		{B268C0A7-BDED-4C52-A6A8-F8C6A02DBE53}.Release|x86.Build.0 = Release|x86
-		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Debug|x86.Build.0 = Debug|Any CPU
-		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Release|x86.ActiveCfg = Release|Any CPU
-		{AAE20C07-D8E0-4772-95AB-C93B7777066D}.Release|x86.Build.0 = Release|Any CPU
-		{9B011A56-FE33-4C7F-9D27-57692F937474}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9B011A56-FE33-4C7F-9D27-57692F937474}.Debug|x86.Build.0 = Debug|Any CPU
-		{9B011A56-FE33-4C7F-9D27-57692F937474}.Release|x86.ActiveCfg = Release|Any CPU
-		{9B011A56-FE33-4C7F-9D27-57692F937474}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
