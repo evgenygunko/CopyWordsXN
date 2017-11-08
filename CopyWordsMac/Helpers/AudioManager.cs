@@ -42,13 +42,19 @@ namespace CopyWordsMac.Helpers
 
         public static async Task<bool> SaveSoundFileAsync(string url, string word)
         {
-            // todo: assuming there is only one user in deck and his name is "User 1".
-            // This needs to be moved into settings.
-            string ankiFilePath = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                "Library/Application Support/Anki2/User 1/collection.media",
-                $"{word}.mp3"
-            );
+            NSUserDefaults user = NSUserDefaults.StandardUserDefaults;
+            string pathToAnkiCollection = user.StringForKey(NSUserDefaultsKeys.AnkiCollectionPath) ?? string.Empty;
+
+            if (!Directory.Exists(pathToAnkiCollection))
+            {
+                AlertManager.ShowWarningAlert(
+                    "Cannot find Anki media collection.", 
+                    $"Folder '{pathToAnkiCollection}' does not exists. Please select a path to Anki media collection in Preferences dialog.");
+
+                return false;
+            }
+
+            string ankiFilePath = Path.Combine(pathToAnkiCollection, $"{word}.mp3");
 
             if (File.Exists(ankiFilePath))
             {

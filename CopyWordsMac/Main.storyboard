@@ -225,27 +225,35 @@
             <objects>
                 <viewController title="Preferences" id="Vzs-P3-rTw" customClass="PreverencesViewController" sceneMemberID="viewController">
                     <view key="view" id="V5F-Kd-Ksn">
-                        <rect key="frame" x="0.0" y="0.0" width="485" height="140"/>
+                        <rect key="frame" x="0.0" y="0.0" width="485" height="197"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-Zt-x81">
-                                <rect key="frame" x="18" y="103" width="201" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Russisk-Dansk ditionary:" id="fC9-zO-3WB">
+                                <rect key="frame" x="18" y="160" width="208" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Russisk-Dansk dictionary:" id="fC9-zO-3WB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8sC-CQ-EDF" userLabel="TextDictionaryFolderPath">
-                                <rect key="frame" x="20" y="73" width="409" height="22"/>
+                                <rect key="frame" x="20" y="130" width="409" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="DXW-A6-Cuj"/>
+                                    <constraint firstAttribute="width" constant="409" id="e1H-3h-yU3"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ugv-uF-TTu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TEA-8F-Xc2" userLabel="ButtonSelectFile">
-                                <rect key="frame" x="431" y="67" width="52" height="32"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TEA-8F-Xc2" userLabel="ButtonSelectDictionaryFolder">
+                                <rect key="frame" x="431" y="124" width="52" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="1F8-Nq-uRQ"/>
+                                    <constraint firstAttribute="height" constant="21" id="b1V-CH-lAN"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t9g-Or-9SF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -255,7 +263,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gaq-3j-bks" userLabel="ButtonCancel">
-                                <rect key="frame" x="401" y="21" width="82" height="32"/>
+                                <rect key="frame" x="401" y="16" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="crb-Jx-Mda">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -268,7 +276,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pQY-iq-uqc" userLabel="ButtonOK">
-                                <rect key="frame" x="346" y="21" width="59" height="32"/>
+                                <rect key="frame" x="346" y="16" width="59" height="32"/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="67h-rL-Hdi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -277,30 +285,73 @@ Gw
                                     <action selector="ButtonOKClicked:" target="Vzs-P3-rTw" id="RCS-KK-Y3j"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rfz-uZ-vDF">
+                                <rect key="frame" x="18" y="94" width="184" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Anki media collection:" id="MNu-t7-Ysa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MdB-J2-4FR" userLabel="TextAnkiMediaCollectionFolderPath">
+                                <rect key="frame" x="20" y="64" width="409" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Pdg-h0-SwI"/>
+                                    <constraint firstAttribute="width" constant="409" id="cew-aW-0Z3"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="saw-xR-FJe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iu4-gB-xZU" userLabel="ButtonSelectAnkiMediaCollectionFolder">
+                                <rect key="frame" x="431" y="58" width="52" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="jlZ-1b-Qqn"/>
+                                    <constraint firstAttribute="height" constant="21" id="lVE-hU-VdR"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Kr-R4-Vnh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ButtonSelectAnkiMediaCollectionFolderClicked:" target="Vzs-P3-rTw" id="ctW-6Q-4pH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gaq-3j-bks" firstAttribute="baseline" secondItem="pQY-iq-uqc" secondAttribute="baseline" id="4Ww-9y-m3K"/>
+                            <constraint firstItem="MdB-J2-4FR" firstAttribute="leading" secondItem="rfz-uZ-vDF" secondAttribute="leading" id="7JA-TS-zCv"/>
+                            <constraint firstItem="gaq-3j-bks" firstAttribute="top" secondItem="pQY-iq-uqc" secondAttribute="top" id="9Lz-Hf-9sC"/>
                             <constraint firstItem="5eK-Zt-x81" firstAttribute="leading" secondItem="V5F-Kd-Ksn" secondAttribute="leading" constant="20" id="G5z-wK-H3B"/>
                             <constraint firstAttribute="trailing" secondItem="TEA-8F-Xc2" secondAttribute="trailing" constant="8" id="H8J-H7-ghj"/>
                             <constraint firstItem="8sC-CQ-EDF" firstAttribute="top" secondItem="5eK-Zt-x81" secondAttribute="bottom" constant="8" id="T47-GD-vl1"/>
                             <constraint firstItem="8sC-CQ-EDF" firstAttribute="leading" secondItem="5eK-Zt-x81" secondAttribute="leading" id="W4b-RM-LXc"/>
                             <constraint firstItem="5eK-Zt-x81" firstAttribute="top" secondItem="V5F-Kd-Ksn" secondAttribute="top" constant="20" id="WAP-Ka-EaE"/>
                             <constraint firstItem="TEA-8F-Xc2" firstAttribute="leading" secondItem="8sC-CQ-EDF" secondAttribute="trailing" constant="8" id="WOu-rB-2TL"/>
-                            <constraint firstItem="gaq-3j-bks" firstAttribute="top" secondItem="8sC-CQ-EDF" secondAttribute="bottom" constant="24" id="bmt-iF-Sl1"/>
+                            <constraint firstItem="Iu4-gB-xZU" firstAttribute="leading" secondItem="MdB-J2-4FR" secondAttribute="trailing" constant="8" id="aoE-Ar-1U3"/>
+                            <constraint firstItem="gaq-3j-bks" firstAttribute="top" secondItem="MdB-J2-4FR" secondAttribute="bottom" constant="20" id="bmt-iF-Sl1"/>
+                            <constraint firstItem="MdB-J2-4FR" firstAttribute="leading" secondItem="8sC-CQ-EDF" secondAttribute="leading" id="hFe-Ng-Mcy"/>
+                            <constraint firstItem="Iu4-gB-xZU" firstAttribute="top" secondItem="MdB-J2-4FR" secondAttribute="top" id="hGU-Mw-Gle"/>
                             <constraint firstAttribute="trailing" secondItem="gaq-3j-bks" secondAttribute="trailing" constant="8" id="kuT-KY-SSN"/>
+                            <constraint firstItem="rfz-uZ-vDF" firstAttribute="top" secondItem="8sC-CQ-EDF" secondAttribute="bottom" constant="19" id="lZi-fF-Mi8"/>
                             <constraint firstItem="gaq-3j-bks" firstAttribute="leading" secondItem="pQY-iq-uqc" secondAttribute="trailing" constant="8" id="o0x-lp-IIY"/>
                             <constraint firstAttribute="trailing" secondItem="TEA-8F-Xc2" secondAttribute="trailing" constant="8" id="qPT-ht-90B"/>
                             <constraint firstItem="TEA-8F-Xc2" firstAttribute="top" secondItem="8sC-CQ-EDF" secondAttribute="top" id="rwl-gE-nNy"/>
+                            <constraint firstItem="rfz-uZ-vDF" firstAttribute="leading" secondItem="5eK-Zt-x81" secondAttribute="leading" id="uVk-cM-XIT"/>
+                            <constraint firstItem="MdB-J2-4FR" firstAttribute="top" secondItem="rfz-uZ-vDF" secondAttribute="bottom" constant="8" id="zqq-VY-tje"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ButtonOK" destination="pQY-iq-uqc" id="VO1-tA-3eI"/>
+                        <outlet property="TextAnkiMediaCollectionFolderPath" destination="MdB-J2-4FR" id="4Dt-9c-xmv"/>
                         <outlet property="TextDictionaryFolderPath" destination="8sC-CQ-EDF" id="FMn-rU-5yV"/>
                     </connections>
                 </viewController>
                 <customObject id="hTS-B9-jRy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="0.0"/>
+            <point key="canvasLocation" x="770.5" y="-21.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -381,7 +432,7 @@ Cg
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1xM-vU-Ks6" userLabel="ButtonCopyWord">
-                                                <rect key="frame" x="513" y="-5" width="82" height="32"/>
+                                                <rect key="frame" x="513" y="-5.5" width="82" height="32"/>
                                                 <buttonCell key="cell" type="push" title="kopire" bezelStyle="rounded" image="buttonCell:RwY-gx-Re1:image" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RwY-gx-Re1">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>

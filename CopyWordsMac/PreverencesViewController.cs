@@ -4,6 +4,7 @@ using System.Linq;
 using Foundation;
 using AppKit;
 using CopyWordsMac.Helpers;
+using System.IO;
 
 namespace CopyWordsMac
 {
@@ -21,7 +22,16 @@ namespace CopyWordsMac
             NSUserDefaults user = NSUserDefaults.StandardUserDefaults;
             TextDictionaryFolderPath.StringValue = user.StringForKey(NSUserDefaultsKeys.DictionaryFolderPath) ?? string.Empty;
 
+            TextAnkiMediaCollectionFolderPath.StringValue = user.StringForKey(NSUserDefaultsKeys.AnkiCollectionPath) ?? string.Empty;
+            if (string.IsNullOrEmpty(TextAnkiMediaCollectionFolderPath.StringValue))
+            {
+                TextAnkiMediaCollectionFolderPath.StringValue = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "Library/Application Support/Anki2/User 1/collection.media");
+            }
+
             TextDictionaryFolderPath.Changed += (s, e) => UpdateControls();
+            TextAnkiMediaCollectionFolderPath.Changed += (s, e) => UpdateControls();
             UpdateControls();
         }
 
@@ -35,15 +45,42 @@ namespace CopyWordsMac
             // save path to dictionary in user settings
             NSUserDefaults user = NSUserDefaults.StandardUserDefaults;
             user.SetString(TextDictionaryFolderPath.StringValue, NSUserDefaultsKeys.DictionaryFolderPath);
+            user.SetString(TextAnkiMediaCollectionFolderPath.StringValue, NSUserDefaultsKeys.AnkiCollectionPath);
 
             View.Window?.Close();
         }
 
         partial void ButtonSelectFileClicked(AppKit.NSButton sender)
         {
+            string folder = ShowChooseFolderDialog("Choose a folder with Russisk-Dansk dictionary files");
+
+            if (folder != null)
+            {
+                TextDictionaryFolderPath.StringValue = folder;
+
+                UpdateControls();
+            }
+        }
+
+        partial void ButtonSelectAnkiMediaCollectionFolderClicked(AppKit.NSButton sender)
+        {
+            string folder = ShowChooseFolderDialog("Choose a folder with Anki media collection");
+
+            if (folder != null)
+            {
+                TextAnkiMediaCollectionFolderPath.StringValue = folder;
+
+                UpdateControls();
+            }
+        }
+
+        private string ShowChooseFolderDialog(string title)
+        {
+            string folder = null;
+
             var dialog = new NSOpenPanel();
 
-            dialog.Title = "Choose a folder with Russisk-Dansk dictionary files";
+            dialog.Title = title;
             dialog.ShowsResizeIndicator = true;
             dialog.ShowsHiddenFiles = false;
             dialog.CanChooseDirectories = true;
@@ -56,11 +93,11 @@ namespace CopyWordsMac
 
                 if (result != null)
                 {
-                    TextDictionaryFolderPath.StringValue = result?.Path;
+                    folder = result?.Path;
                 }
             }
 
-            UpdateControls();
+            return folder;
         }
 
         private void UpdateControls()
