@@ -52,11 +52,11 @@
     <Reference Include="Xamarin.Mac" />
     <Reference Include="System.Net.Http" />
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\HtmlAgilityPack.1.6.1\lib\netstandard2.0\HtmlAgilityPack.dll</HintPath>
+      <HintPath>..\packages\HtmlAgilityPack.1.6.4\lib\netstandard2.0\HtmlAgilityPack.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CopyWords.Parsers">
-      <HintPath>..\packages\CopyWords.Parsers.Evgeny.1.0.0\lib\netstandard2.0\CopyWords.Parsers.dll</HintPath>
+      <HintPath>..\packages\CopyWords.Parsers.Evgeny.1.0.1\lib\netstandard2.0\CopyWords.Parsers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
