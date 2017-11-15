@@ -66,6 +66,8 @@ namespace CopyWordsMac
             ImageViewPage.Image = resizedImage;
 
             LabelImageFile.StringValue = ViewModel.Title;
+            ButtonNext.Enabled = ViewModel.IsNextPageAvaliable;
+            ButtonPrevious.Enabled = ViewModel.IsPreviousPageAvaliable;
         }
 
         private NSImage ZoomIn()

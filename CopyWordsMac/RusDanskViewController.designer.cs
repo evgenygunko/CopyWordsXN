@@ -13,6 +13,12 @@ namespace CopyWordsMac
 	partial class RusDanskViewController
 	{
 		[Outlet]
+		AppKit.NSButton ButtonNext { get; set; }
+
+		[Outlet]
+		AppKit.NSButton ButtonPrevious { get; set; }
+
+		[Outlet]
 		AppKit.NSLayoutConstraint ConstraintImageViewHeight { get; set; }
 
 		[Outlet]
@@ -38,6 +44,16 @@ namespace CopyWordsMac
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ConstraintImageViewHeight != null) {
+				ConstraintImageViewHeight.Dispose ();
+				ConstraintImageViewHeight = null;
+			}
+
+			if (ConstraintImageViewWidth != null) {
+				ConstraintImageViewWidth.Dispose ();
+				ConstraintImageViewWidth = null;
+			}
+
 			if (ImageViewPage != null) {
 				ImageViewPage.Dispose ();
 				ImageViewPage = null;
@@ -48,14 +64,14 @@ namespace CopyWordsMac
 				LabelImageFile = null;
 			}
 
-			if (ConstraintImageViewHeight != null) {
-				ConstraintImageViewHeight.Dispose ();
-				ConstraintImageViewHeight = null;
+			if (ButtonPrevious != null) {
+				ButtonPrevious.Dispose ();
+				ButtonPrevious = null;
 			}
 
-			if (ConstraintImageViewWidth != null) {
-				ConstraintImageViewWidth.Dispose ();
-				ConstraintImageViewWidth = null;
+			if (ButtonNext != null) {
+				ButtonNext.Dispose ();
+				ButtonNext = null;
 			}
 		}
 	}

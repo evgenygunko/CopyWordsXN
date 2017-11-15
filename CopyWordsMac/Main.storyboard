@@ -1558,11 +1558,11 @@ Cg
                                     </constraints>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.02197802197802198" horizontal="YES" id="wCh-3L-RDm">
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="wCh-3L-RDm">
                                     <rect key="frame" x="1" y="589" width="683" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.0073349633251833524" horizontal="NO" id="sGt-mx-Qez">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.97921760391198043" horizontal="NO" id="sGt-mx-Qez">
                                     <rect key="frame" x="684" y="1" width="15" height="588"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1595,6 +1595,8 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ButtonNext" destination="uN2-NS-Rf4" id="5D5-fQ-Eqb"/>
+                        <outlet property="ButtonPrevious" destination="Cej-18-VNK" id="KOa-yX-hmv"/>
                         <outlet property="ConstraintImageViewHeight" destination="1w8-sO-Nuu" id="7A3-EQ-OWE"/>
                         <outlet property="ConstraintImageViewWidth" destination="o1o-PU-FHZ" id="2f3-0C-sDF"/>
                         <outlet property="ImageViewPage" destination="cOn-4x-qMq" id="XJu-Oj-qiW"/>
