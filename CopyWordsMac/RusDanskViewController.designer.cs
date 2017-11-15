@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -9,38 +9,54 @@ using System.CodeDom.Compiler;
 
 namespace CopyWordsMac
 {
-    [Register ("RusDanskViewController")]
-    partial class RusDanskViewController
-    {
-        [Outlet]
-        AppKit.NSImageView ImageViewPage { get; set; }
+	[Register ("RusDanskViewController")]
+	partial class RusDanskViewController
+	{
+		[Outlet]
+		AppKit.NSLayoutConstraint ConstraintImageViewHeight { get; set; }
 
-        [Outlet]
-        AppKit.NSTextField LabelImageFile { get; set; }
+		[Outlet]
+		AppKit.NSLayoutConstraint ConstraintImageViewWidth { get; set; }
 
-        [Action ("ButtonNextClicked:")]
-        partial void ButtonNextClicked (AppKit.NSButton sender);
+		[Outlet]
+		AppKit.NSImageView ImageViewPage { get; set; }
 
-        [Action ("ButtonPreviousClicked:")]
-        partial void ButtonPreviousClicked (AppKit.NSButton sender);
+		[Outlet]
+		AppKit.NSTextField LabelImageFile { get; set; }
 
-        [Action ("ButtonZoomInClicked:")]
-        partial void ButtonZoomInClicked (AppKit.NSButton sender);
+		[Action ("ButtonNextClicked:")]
+		partial void ButtonNextClicked (AppKit.NSButton sender);
 
-        [Action ("ButtonZoomOutClicked:")]
-        partial void ButtonZoomOutClicked (AppKit.NSButton sender);
-        
-        void ReleaseDesignerOutlets ()
-        {
-            if (ImageViewPage != null) {
-                ImageViewPage.Dispose ();
-                ImageViewPage = null;
-            }
+		[Action ("ButtonPreviousClicked:")]
+		partial void ButtonPreviousClicked (AppKit.NSButton sender);
 
-            if (LabelImageFile != null) {
-                LabelImageFile.Dispose ();
-                LabelImageFile = null;
-            }
-        }
-    }
+		[Action ("ButtonZoomInClicked:")]
+		partial void ButtonZoomInClicked (AppKit.NSButton sender);
+
+		[Action ("ButtonZoomOutClicked:")]
+		partial void ButtonZoomOutClicked (AppKit.NSButton sender);
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (ImageViewPage != null) {
+				ImageViewPage.Dispose ();
+				ImageViewPage = null;
+			}
+
+			if (LabelImageFile != null) {
+				LabelImageFile.Dispose ();
+				LabelImageFile = null;
+			}
+
+			if (ConstraintImageViewHeight != null) {
+				ConstraintImageViewHeight.Dispose ();
+				ConstraintImageViewHeight = null;
+			}
+
+			if (ConstraintImageViewWidth != null) {
+				ConstraintImageViewWidth.Dispose ();
+				ConstraintImageViewWidth = null;
+			}
+		}
+	}
 }

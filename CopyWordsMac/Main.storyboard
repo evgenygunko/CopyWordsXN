@@ -1508,15 +1508,6 @@ Cg
                                     <action selector="ButtonPreviousClicked:" target="lkk-fF-PZc" id="6Jp-XW-Dpx"/>
                                 </connections>
                             </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOn-4x-qMq">
-                                <rect key="frame" x="5" y="5" width="690" height="583"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageFrameStyle="grayBezel" id="hfq-aY-rrO"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="uN2-NS-Rf4" userLabel="ButtonNext">
                                 <rect key="frame" x="660" y="605" width="32" height="32"/>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ImageNext" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="baK-Ow-cxL">
@@ -1541,6 +1532,41 @@ Cg
                                     <action selector="ButtonZoomInClicked:" target="lkk-fF-PZc" id="GTd-39-dAy"/>
                                 </connections>
                             </button>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQh-nn-NBQ">
+                                <rect key="frame" x="0.0" y="0.0" width="700" height="605"/>
+                                <clipView key="contentView" id="1XB-nL-0Fr">
+                                    <rect key="frame" x="1" y="1" width="683" height="588"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOn-4x-qMq">
+                                            <rect key="frame" x="-3" y="-815" width="956" height="1406"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1400" id="1w8-sO-Nuu"/>
+                                                <constraint firstAttribute="width" constant="950" id="o1o-PU-FHZ"/>
+                                            </constraints>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="grayBezel" id="hfq-aY-rrO"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="keyPath">
+                                                    <integer key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cOn-4x-qMq" firstAttribute="top" secondItem="1XB-nL-0Fr" secondAttribute="top" id="MEz-jq-wsY"/>
+                                        <constraint firstItem="cOn-4x-qMq" firstAttribute="leading" secondItem="1XB-nL-0Fr" secondAttribute="leading" id="pRy-fT-IbN"/>
+                                    </constraints>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="0.02197802197802198" horizontal="YES" id="wCh-3L-RDm">
+                                    <rect key="frame" x="1" y="589" width="683" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.0073349633251833524" horizontal="NO" id="sGt-mx-Qez">
+                                    <rect key="frame" x="684" y="1" width="15" height="588"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="uN2-NS-Rf4" secondAttribute="trailing" constant="8" id="1um-mb-33N"/>
@@ -1548,13 +1574,13 @@ Cg
                             <constraint firstItem="0O8-ZO-03a" firstAttribute="leading" secondItem="Vwf-AI-xqf" secondAttribute="leading" constant="8" id="4yL-b6-hzr"/>
                             <constraint firstItem="uN2-NS-Rf4" firstAttribute="leading" secondItem="Cej-18-VNK" secondAttribute="trailing" constant="8" id="5wD-sB-boa"/>
                             <constraint firstItem="vDj-7e-LnO" firstAttribute="top" secondItem="nAN-cV-Ckk" secondAttribute="top" id="8vV-qc-uKH"/>
-                            <constraint firstAttribute="trailing" secondItem="cOn-4x-qMq" secondAttribute="trailing" constant="8" id="H1n-G6-5Pm"/>
-                            <constraint firstItem="cOn-4x-qMq" firstAttribute="leading" secondItem="Vwf-AI-xqf" secondAttribute="leading" constant="8" id="Jrd-wK-Fkj"/>
+                            <constraint firstAttribute="bottom" secondItem="eQh-nn-NBQ" secondAttribute="bottom" id="Fpm-B0-ncO"/>
+                            <constraint firstItem="eQh-nn-NBQ" firstAttribute="leading" secondItem="Vwf-AI-xqf" secondAttribute="leading" id="IYF-8g-IF4"/>
                             <constraint firstItem="uN2-NS-Rf4" firstAttribute="top" secondItem="Vwf-AI-xqf" secondAttribute="top" constant="8" id="LTc-Ru-Lng"/>
                             <constraint firstItem="Cej-18-VNK" firstAttribute="top" secondItem="Vwf-AI-xqf" secondAttribute="top" constant="8" id="Nzw-qf-5dc"/>
+                            <constraint firstAttribute="trailing" secondItem="eQh-nn-NBQ" secondAttribute="trailing" id="QMW-Yd-xi6"/>
                             <constraint firstItem="Cej-18-VNK" firstAttribute="height" secondItem="vDj-7e-LnO" secondAttribute="height" id="QU7-HP-5Za"/>
-                            <constraint firstItem="cOn-4x-qMq" firstAttribute="top" secondItem="nAN-cV-Ckk" secondAttribute="bottom" constant="20" id="T77-eW-enF"/>
-                            <constraint firstAttribute="bottom" secondItem="cOn-4x-qMq" secondAttribute="bottom" constant="8" id="Tx4-3c-Wgh"/>
+                            <constraint firstItem="eQh-nn-NBQ" firstAttribute="top" secondItem="nAN-cV-Ckk" secondAttribute="bottom" id="TcU-qf-4UN"/>
                             <constraint firstItem="nAN-cV-Ckk" firstAttribute="bottom" secondItem="uN2-NS-Rf4" secondAttribute="bottom" id="Zp6-dO-x2y"/>
                             <constraint firstItem="nAN-cV-Ckk" firstAttribute="width" secondItem="vDj-7e-LnO" secondAttribute="width" id="ZyD-qG-m1j"/>
                             <constraint firstItem="0O8-ZO-03a" firstAttribute="top" secondItem="Vwf-AI-xqf" secondAttribute="top" constant="8" id="e7q-iN-Ubz"/>
@@ -1569,6 +1595,8 @@ Cg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ConstraintImageViewHeight" destination="1w8-sO-Nuu" id="7A3-EQ-OWE"/>
+                        <outlet property="ConstraintImageViewWidth" destination="o1o-PU-FHZ" id="2f3-0C-sDF"/>
                         <outlet property="ImageViewPage" destination="cOn-4x-qMq" id="XJu-Oj-qiW"/>
                         <outlet property="LabelImageFile" destination="0O8-ZO-03a" id="wtD-9H-WAa"/>
                     </connections>

@@ -62,7 +62,9 @@ namespace CopyWordsMac
 
         private void UpdateControls()
         {
-            ImageViewPage.Image = ViewModel.CurrentImage;
+            NSImage resizedImage = ResizeImage(ViewModel.CurrentImage, _resizeFactor);
+            ImageViewPage.Image = resizedImage;
+
             LabelImageFile.StringValue = ViewModel.Title;
         }
 
@@ -92,6 +94,9 @@ namespace CopyWordsMac
             newImage.LockFocus();
             sourceImage.DrawInRect(targetRect, CoreGraphics.CGRect.Empty, NSCompositingOperation.SourceOver, 1.0f);
             newImage.UnlockFocus();
+
+            ConstraintImageViewWidth.Constant = width;
+            ConstraintImageViewHeight.Constant = height;
 
             return newImage;
         }
