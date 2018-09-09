@@ -14,6 +14,7 @@ namespace CopyWordsMac.ViewModels
         public string Sound { get; set; }
         public string Examples { get; set; } = "<>";
         public List<RussianTranslation> Translations = new List<RussianTranslation>();
+        public List<VariationUrl> VariationUrls { get; set; }
 
         internal static WordViewModel CreateFromModel(WordModel wordModel)
         {
@@ -27,6 +28,7 @@ namespace CopyWordsMac.ViewModels
                 wordViewModel.Definitions = wordModel.Definitions;
                 wordViewModel.Sound = wordModel.Sound;
                 wordViewModel.Translations = wordModel.Translations;
+                wordViewModel.VariationUrls = wordModel.VariationUrls;
             
                 if (wordModel.Examples != null && wordModel.Examples.Count > 0)
                 {

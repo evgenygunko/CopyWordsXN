@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AppKit;
 using CopyWords.Parsers;
@@ -172,9 +173,82 @@ namespace CopyWordsMac
             AlertManager.ShowWarningAlert("Cannot find word", $"Cannot find word {word} in DDO.");
         }
 
+        private async Task GetWordVariationAsync(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                AlertManager.ShowWarningAlert("URL is null or empty", "Cannot find a URL to lookup this word");
+                return;
+            }
+
+            LookUpWord command = new LookUpWord();
+
+            WordViewModel wordViewModel = null;
+
+            try
+            {
+                WordModel wordModel = await command.GetWordVariationAsync(url);
+                wordViewModel = WordViewModel.CreateFromModel(wordModel);
+
+                log.Translations.Clear();
+                foreach (RussianTranslation translation in wordViewModel.Translations)
+                {
+                    log.Translations.Add(new RussianTranslation(translation.DanishWord, translation.Translation));
+                }
+
+                ActivityLog.ReloadData();
+
+                if (wordModel == null)
+                {
+                    AlertManager.ShowInfoAlert("Cannot find word", $"Den Danske Ordbog doesn't have a page for url '{url}'");
+                }
+            }
+            catch (Exception ex)
+            {
+                AlertManager.ShowWarningAlert($"Error occurred while trying to load a page for url '{url}'", ex.Message);
+                return;
+            }
+
+            if (wordViewModel != null)
+            {
+                _wordViewModel = wordViewModel;
+                UpdateControls();
+
+                return;
+            }
+
+            AlertManager.ShowWarningAlert("Cannot find word", $"Cannot find a page with url '{url}' in DDO.");
+        }
+
         private void UpdateControls()
         {
             LabelWord.StringValue = _wordViewModel.Word;
+
+            for (int i = StackViewOpslagsords.Views.Length - 1; i >= 0; i--)
+            {
+                StackViewOpslagsords.RemoveView(StackViewOpslagsords.Views[i]);
+            }
+
+            for (int i = 0; i < _wordViewModel.VariationUrls?.Count; i++)
+            {
+                var button = new NSButton();
+                button.SetButtonType(NSButtonType.OnOff);
+                button.BezelStyle = NSBezelStyle.RegularSquare;
+                button.Title = _wordViewModel.VariationUrls[i].Word;
+
+                if (txtLookUp.StringValue.Equals(_wordViewModel.VariationUrls[i].Word, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    button.State = NSCellStateValue.On;
+                }
+
+                button.Tag = i;
+                button.Activated += async delegate {
+                    await VariantButtonClicked(button);
+                };
+
+                StackViewOpslagsords.AddView(button, NSStackViewGravity.Trailing);
+            }
+
             LabelDefinitions.StringValue = _wordViewModel.Definitions;
             LabelPronunciation.StringValue = _wordViewModel.Pronunciation;
             LabelEndings.StringValue = _wordViewModel.Endings;
@@ -193,5 +267,18 @@ namespace CopyWordsMac
         }
 
         #endregion
+
+        private async Task VariantButtonClicked(NSObject sender)
+        {
+            var button = sender as NSButton;
+
+            int variantIndex = int.Parse(button.Tag.ToString());
+            VariationUrl variationUrl = _wordViewModel.VariationUrls[variantIndex];
+            Debug.WriteLine($"Button with a variant clicked, word: {variationUrl.Word} url = {variationUrl.URL}");
+
+            txtLookUp.StringValue = variationUrl.Word;
+
+            await GetWordVariationAsync(variationUrl.URL);
+        }
     }
 }
