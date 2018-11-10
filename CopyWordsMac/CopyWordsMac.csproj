@@ -56,7 +56,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="CopyWords.Parsers">
-      <HintPath>..\packages\CopyWords.Parsers.Evgeny.1.0.4\lib\netstandard2.0\CopyWords.Parsers.dll</HintPath>
+      <HintPath>..\packages\CopyWords.Parsers.Evgeny.1.0.5\lib\netstandard2.0\CopyWords.Parsers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
