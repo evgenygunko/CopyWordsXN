@@ -16,12 +16,7 @@ stages:
       demands: msbuild
 
     steps:
-    - task: PowerShell@2
-      displayName: 'PowerShell Script - download latest Parsers nuget package'
-      inputs:
-        targetType: filePath
-        arguments: "-githubpersonaltoken $(githubpersonaltoken)"
-        filePath: './Build/download-latest-release.ps1'
+    - template: /.azuredevops/templates/steps-download-copywords-parsers.yaml
 
     - task: NuGetToolInstaller@0
       displayName: 'Use NuGet 4.3.0'
@@ -53,24 +48,6 @@ stages:
       inputs:
         PathtoPublish: '$(build.artifactstagingdirectory)'
 
-- stage: Sync_With_Github
-  dependsOn: Build
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-  - job: Sync_With_Github
-    #pool:
-    #  name: MacOS-private
-
-    steps:
-    - script: |
-        echo Push changes to Github
-
-        git config --global user.email "evgeny.gunko@gmail.com"
-        git config --global user.name "Evgeny Gunko"
-
-        echo Pulling changes from Github...
-        git pull https://github.com/evgenygunko/CopyWordsXN.git master --allow-unrelated-histories
-
-        echo Pushing changes to Github...
-        git remote add github https://$(githubpersonaltoken)@github.com/evgenygunko/CopyWordsXN.git
-        git push -u github HEAD:master
+- template: /.azuredevops/templates/stages-sync-with-github.yaml
+  parameters:
+    repository: CopyWordsXN
