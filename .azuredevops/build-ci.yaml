@@ -7,7 +7,11 @@ trigger:
     - feature/*
 
 stages:
+- template: /.azuredevops/templates/stages-build-version-number.yaml
+
 - stage: Build
+  dependsOn: Build_Version_Number
+
   jobs:
   - job: Build
     pool:
