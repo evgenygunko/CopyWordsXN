@@ -6,8 +6,6 @@ pool:
   demands: msbuild
 
 steps:
-- template: /.azuredevops/templates/steps-download-copywords-parsers.yaml
-
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 4.3.0'
   inputs:
@@ -17,8 +15,6 @@ steps:
   displayName: 'NuGet restore'
   inputs:
     restoreSolution: '**/*.sln'
-    feedsToUse: config
-    nugetConfigPath: './.nuget/NuGet.Config'
 
 - task: MSBuild@1
   displayName: 'Build solution **/*.sln'

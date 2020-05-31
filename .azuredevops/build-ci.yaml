@@ -7,8 +7,6 @@ trigger:
     - feature/*
 
 stages:
-- template: /.azuredevops/templates/stages-build-version-number.yaml
-
 - stage: Build
   dependsOn: Build_Version_Number
 
@@ -31,8 +29,6 @@ stages:
       displayName: 'NuGet restore'
       inputs:
         restoreSolution: '**/*.sln'
-        feedsToUse: config
-        nugetConfigPath: './.nuget/NuGet.Config'
 
     - task: MSBuild@1
       displayName: 'Build solution **/*.sln'
