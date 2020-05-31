@@ -7,6 +7,8 @@ trigger:
     - feature/*
 
 stages:
+- template: /.azuredevops/templates/stages-build-version-number.yaml
+
 - stage: Build
   dependsOn: Build_Version_Number
 
@@ -18,8 +20,6 @@ stages:
       demands: msbuild
 
     steps:
-    - template: /.azuredevops/templates/steps-download-copywords-parsers.yaml
-
     - task: NuGetToolInstaller@0
       displayName: 'Use NuGet 4.3.0'
       inputs:
