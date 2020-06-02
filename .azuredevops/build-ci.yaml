@@ -7,10 +7,7 @@ trigger:
     - feature/*
 
 stages:
-- template: /.azuredevops/templates/stages-build-version-number.yaml
-
 - stage: Build
-  dependsOn: Build_Version_Number
 
   jobs:
   - job: Build
@@ -20,15 +17,20 @@ stages:
       demands: msbuild
 
     steps:
-    - task: NuGetToolInstaller@0
-      displayName: 'Use NuGet 4.3.0'
+    - bash: |
+        echo "##vso[build.updatebuildnumber]$(major).$(minor).$(Build.BuildId)"
+      name: SetBuildName
+
+    - task: PowerShell@2
+      displayName: 'PowerShell Script - update version number in project files'
       inputs:
-        versionSpec: 4.3.0
+        targetType: filePath
+        arguments: "-version '$(Build.BuildNumber)'"
+        filePath: './.build/UpdateVersion.ps1'
 
     - task: NuGetCommand@2
-      displayName: 'NuGet restore'
       inputs:
-        restoreSolution: '**/*.sln'
+        command: 'restore'
 
     - task: MSBuild@1
       displayName: 'Build solution **/*.sln'

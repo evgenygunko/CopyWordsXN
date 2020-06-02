@@ -6,15 +6,9 @@ pool:
   demands: msbuild
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 4.3.0'
-  inputs:
-    versionSpec: 4.3.0
-
 - task: NuGetCommand@2
-  displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '**/*.sln'
+    command: 'restore'
 
 - task: MSBuild@1
   displayName: 'Build solution **/*.sln'
